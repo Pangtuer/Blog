@@ -3,11 +3,11 @@
 
 <form action="/edit" method="post">
     <div class="form-group">
-        <label for="title" class="">Title</label>
-        <input id="title" class="form-control" type="text" name="title" value="<%= title %>">
-        <input id="postId" name="postId" type="hidden" value="<%= postId %>" />
-        <label for="content">Post</label>
-        <textarea name="content" id="content" rows="8" cols="80" class="form-control"><%= content %></textarea>
+        <label>Title</label>
+        <input class="form-control" type="text" name="title" value="<%= title %>" required autofocus>
+        <input name="postId" type="hidden" value="<%= postId %>" />
+        <label>Post</label>
+        <textarea name="content" rows="8" cols="80" class="form-control" required><%= content %></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary" name="submit">Save Changes</button>
