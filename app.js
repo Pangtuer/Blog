@@ -77,29 +77,23 @@ app.get("/contact", function (req, res) {
 app.get("/posts/:postId", function (req, res) {
 
   const requestedPostId = req.params.postId;
-  Post.findOne({
+  Post.findById({
     _id: requestedPostId
   }, function (err, post) {
     if (!err) {
-      if (post !== null) {
-        res.render("post", {
-          title: post.title,
-          content: post.content,
-          id: requestedPostId
-        });
-      } else {
-        redirect("/compose")
-      }
-
+      res.render("post", {
+        title: post.title,
+        content: post.content,
+        id: requestedPostId
+      });
     } else {
       console.log(err)
     }
-
   });
 });
 app.get("/posts/:postId/edit", function (req, res) {
   const requestedPostId = req.params.postId;
-  Post.findOne({
+  Post.findById({
     _id: requestedPostId
   }, function (err, post) {
     if (!err) {
@@ -117,7 +111,7 @@ app.get("/posts/:postId/edit", function (req, res) {
 
 app.post("/edit", function (req, res) {
   const requestedPostId = req.body.postId;
-  Post.findOneAndUpdate({
+  Post.findByIdAndUpdate({
     _id: requestedPostId
   }, {
     title: req.body.title,
@@ -133,7 +127,7 @@ app.post("/edit", function (req, res) {
 
 app.post("/delete", function (req, res) {
   const deleteId = req.body.btnDelete;
-  Post.deleteOne({
+  Post.findByIdAndDelete({
       _id: deleteId
     }, function (err) {
       if (!err) {
